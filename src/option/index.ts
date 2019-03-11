@@ -1,0 +1,6 @@
+export { Some } from './Some'
+export { None } from './None'
+export { fromNullable } from './fromNullable'
+export { isNone } from './isNone'
+export { flatMap } from './flatMap'
+export { getWithDefault } from './getWithDefault'

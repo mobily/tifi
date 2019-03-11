@@ -1,0 +1,44 @@
+{
+  "name": "tifi",
+  "description": "",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "engines": {
+    "node": ">= 10.*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "functional-programming",
+    "option-type",
+    "monad"
+  ],
+  "author": "mobily",
+  "homepage": "https://github.com/mobily/tifi#readme",
+  "bugs": "https://github.com/mobily/tifi/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobily/tifi.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.0",
+    "jest": "^24.1.0",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.13.1",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3333"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ]
+}
