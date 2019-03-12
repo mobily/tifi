@@ -1,6 +1,6 @@
 import { isNone } from './isNone'
 
-import { Option, ExtractValue } from '../internal/types'
+import { Option } from '../internal/types'
 
 export const getWithDefault = <T>(defaultValue: NonNullable<T>) => (
   option: Option<T>,
