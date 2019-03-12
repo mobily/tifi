@@ -1,5 +1,5 @@
-import { Option } from '../internal/types'
+import { Option, ExtractValue } from '../internal/types'
 
-export const flatMap = <T, R>(fn: (arg0: NonNullable<T>) => Option<R>) => (
+export const flatMap = <T, R>(fn: (value: ExtractValue<T>) => Option<R>) => (
   option: Option<T>,
-): Option<R> => fn(option as NonNullable<T>)
+): Option<R> => fn(option.value)

@@ -1,10 +1,10 @@
 import { Some } from './Some'
 import { isNone } from './isNone'
 
-import { Option } from '../internal/types'
+import { Option, ExtractValue } from '../internal/types'
 
 export const mapWithDefault = <T, R>(
   defaultValue: NonNullable<R>,
-  fn: (arg0: NonNullable<T>) => NonNullable<R>,
+  fn: (value: ExtractValue<T>) => NonNullable<R>,
 ) => (option: Option<T>): Option<R> =>
-  Some(isNone(option) ? defaultValue : fn(option as NonNullable<T>))
+  Some(isNone(option) ? defaultValue : fn(option.value))
