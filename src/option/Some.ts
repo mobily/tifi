@@ -1,5 +1,5 @@
-import { Some as OpaqueSome } from '../internal/types'
-import { Some as SymbolSome } from '../internal/symbol'
+import { Some as OpSome } from '../internal/types'
+import { Some as Symbol } from '../internal/symbol'
 
-export const Some = <T>(value: NonNullable<T>): OpaqueSome<T> =>
-  Object.freeze({ value, __type: SymbolSome }) as OpaqueSome<T>
+export const Some = <T extends NonNullable<{}>>(value: T): OpSome<T> =>
+  Object.freeze({ value, __type: Symbol }) as OpSome<T>

@@ -1,9 +1,10 @@
 import { Some } from './Some'
 import { None } from './None'
 
-import { Option } from '../internal/types'
+import { Option, None as OpNone, Some as OpSome } from '../internal/types'
 
-export const fromNullable = <T>(value: T | null | undefined): Option<T> =>
-  value === null || typeof value === 'undefined'
-    ? None
-    : Some(value as NonNullable<T>)
+export function fromNullable(value: null | undefined): OpNone
+export function fromNullable<T>(value: T): OpSome<T>
+export function fromNullable<T>(value: T | null | undefined): Option<T> {
+  return value === null || typeof value === 'undefined' ? None : Some(value)
+}
