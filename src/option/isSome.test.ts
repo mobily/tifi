@@ -2,7 +2,7 @@ import { Some } from './Some'
 import { isSome } from './isSome'
 
 describe('isSome', () => {
-  it('is truthy', () => {
+  it('*', () => {
     expect(isSome(Some('string'))).toBeTruthy()
   })
 })

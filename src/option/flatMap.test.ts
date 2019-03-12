@@ -6,18 +6,21 @@ import { flatMap } from './flatMap'
 import { pipe } from '../pipe'
 
 describe('flatMap', () => {
-  it('Some', () => {
-    const result = pipe(
-      fromNullable(null),
-      flatMap(_value => Some(1)),
-    )
-    expect(result).toEqual(Some(1))
+  it('*', () => {
+    expect(
+      pipe(
+        fromNullable(null),
+        flatMap(_value => Some(1)),
+      ),
+    ).toEqual(Some(1))
   })
-  it('None', () => {
-    const result = pipe(
-      fromNullable('string'),
-      flatMap(_value => None),
-    )
-    expect(result).toEqual(None)
+
+  it('*', () => {
+    expect(
+      pipe(
+        fromNullable('string'),
+        flatMap(_value => None),
+      ),
+    ).toEqual(None)
   })
 })
