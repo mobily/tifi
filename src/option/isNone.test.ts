@@ -1,5 +1,8 @@
+import { None } from './None'
+import { isNone } from './isNone'
+
 describe('isNone', () => {
-  test('*', () => {
-    expect(1).toBe(1)
+  it('is truthy', () => {
+    expect(isNone(None)).toBeTruthy()
   })
 })
