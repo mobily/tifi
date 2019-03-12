@@ -11,8 +11,8 @@ describe('fromNullable', () => {
 
   it('*', () => {
     expect(fromNullable('string')).toEqual(Some('string'))
-    expect(fromNullable([0, 1, 2])).toEqual(Some([0, 1, 2]))
-    expect(fromNullable({ value: true })).toEqual(Some({ value: true }))
+    expect(fromNullable([])).toEqual(Some([]))
+    expect(fromNullable({})).toEqual(Some({}))
     expect(fromNullable(0)).toEqual(Some(0))
     expect(fromNullable(false)).toEqual(Some(false))
   })
