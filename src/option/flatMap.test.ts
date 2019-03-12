@@ -10,7 +10,7 @@ describe('flatMap', () => {
     expect(
       pipe(
         fromNullable(null),
-        flatMap(_value => Some(1)),
+        flatMap(_ => Some(1)),
       ),
     ).toEqual(Some(1))
   })
@@ -19,7 +19,7 @@ describe('flatMap', () => {
     expect(
       pipe(
         fromNullable('string'),
-        flatMap(_value => None),
+        flatMap(_ => None),
       ),
     ).toEqual(None)
   })

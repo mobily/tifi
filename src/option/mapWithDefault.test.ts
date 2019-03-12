@@ -10,7 +10,7 @@ describe('mapWithDefault', () => {
     expect(
       pipe(
         fromNullable(null),
-        mapWithDefault('default', _value => 'string'),
+        mapWithDefault('default', _ => 'string'),
       ),
     ).toEqual(Some('default'))
   })
@@ -19,7 +19,7 @@ describe('mapWithDefault', () => {
     expect(
       pipe(
         fromNullable([1, 2, 3]),
-        mapWithDefault('default', _value => 'string'),
+        mapWithDefault('default', _ => 'string'),
       ),
     ).toEqual(Some('string'))
   })

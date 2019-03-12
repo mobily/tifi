@@ -11,7 +11,7 @@ describe('map', () => {
     expect(
       pipe(
         fromNullable(null),
-        map(_value => 'string'),
+        map(_ => 'string'),
       ),
     ).toEqual(None)
   })
@@ -20,7 +20,7 @@ describe('map', () => {
     expect(
       pipe(
         fromNullable([1, 2, 3]),
-        map(_value => 'string'),
+        map(_ => 'string'),
       ),
     ).toEqual(Some('string'))
   })
