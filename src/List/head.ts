@@ -1,10 +1,8 @@
 import { fromNullable } from '../Option/fromNullable'
 
-import { Option, None as N, Some as S } from '../internal/types'
+import { Option } from '../internal/types'
 
-export function head(list: [] | [null, ...any[]] | [undefined, ...any[]]): N
-export function head<T>(list: [T, ...any[]]): S<T>
-export function head<T>(list: T[]): Option<T> {
+export const head = <T>(list: T[]): Option<T> => {
   const [hd] = list
   return fromNullable(hd)
 }
