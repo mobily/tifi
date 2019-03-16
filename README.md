@@ -64,11 +64,28 @@ fromNullable('string') // Some('string')
 
 #### fromFalsy
 
-> TODO
+> Returns `None` if the value is falsy, otherwise returns the value wrapped in a `Some`.
+
+`fromFalsy<T>(value: T): Option<T>`
+
+```typescript
+fromFalsy(null) // None
+fromFalsy('') // None
+fromFalsy(0) // None
+fromFalsy('string') // Some('string')
+fromFalsy(1) // Some(1)
+```
 
 #### fromPredicate
 
-> TODO
+> Returns `None` if the predicate returns `false`, otherwise returns the value wrapped in a `Some`.
+
+`fromPredicate<T>(predicate: (value: T) => boolean, value: T): Option<T>`
+
+```typescript
+fromPredicate(str => str.length > 10, 'string') // None
+fromPredicate(obj => obj.prop === 'string', { prop: 'string' }) // Some({ props: 'string' })
+```
 
 #### isSome
 
