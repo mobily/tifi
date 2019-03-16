@@ -13,4 +13,5 @@ notifications:
 cache: yarn
 script:
   - yarn build
+  - yarn test
   - cat coverage/lcov.info | node_modules/.bin/coveralls || echo "Coveralls upload failed"
