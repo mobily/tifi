@@ -47,6 +47,10 @@ npm install @mobily/tifi --save
 
 ### Option
 
+```typescript
+type Option<T> = None | Some<T>
+```
+
 #### Some
 
 #### None
@@ -89,11 +93,25 @@ fromPredicate(obj => obj.prop === 'string', { prop: 'string' }) // Some({ props:
 
 #### isSome
 
-> TODO
+> Returns `true` if the option is an instance of `Some`.
+
+`isSome<T>(option: Option<T>): boolean`
+
+```typescript
+const option = fromNullable('string') // Some('string')
+isSome(option) // true
+```
 
 #### isNone
 
-> TODO
+> Returns `true` if the option is `None`.
+
+`isNone<T>(option: Option<T>): boolean`
+
+```typescript
+const option = fromNullable(null) // None
+isNone(option) // true
+```
 
 #### flatMap
 
