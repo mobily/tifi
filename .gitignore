@@ -10,5 +10,3 @@ coverage/
 *.tsbuildinfo
 
 dist/
-
-src/playground.ts
