@@ -1,7 +1,7 @@
 {
   "name": "@mobily/tifi",
   "description": "🤓 Tifi solves a problem of the existence of both `undefined` and `null`.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
