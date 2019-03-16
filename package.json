@@ -2,6 +2,7 @@
   "name": "@mobily/tifi",
   "description": "",
   "version": "0.0.0",
+  "main": "dist",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
