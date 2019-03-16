@@ -1,6 +1,31 @@
-# tifi
+<h1 align="center">
+  Tifi
+</h1>
 
-Abbreviation for `There, I fixed it` 🤓
+<h4 align="center">
+  🤓 Abbreviation for `There, I fixed it` .
+</h4>
+
+<p align="center">
+  <a href="https://travis-ci.com/mobily/tifi">
+    <img src="https://img.shields.io/travis/com/mobily/tifi.svg?style=flat-square" alt="Build Status" />
+  </a>
+  <a href="https://coveralls.io/github/mobily/tifi?branch=master">
+    <img src="https://img.shields.io/coveralls/github/mobily/tifi.svg?style=flat-square" alt="Coverage" />
+  </a>
+  <a href="https://www.npmjs.com/package/@mobily/tifi">
+    <img src="https://img.shields.io/npm/v/@mobily/tifi.svg?style=flat-square" alt="npm" />
+  </a>
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
+  </a>
+  <a href="#contributors">
+    <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="All Contributors" />
+  </a>
+  <a href="https://github.com/mobily/tifi/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license" />
+  </a>
+</p>
 
 ## Installation
 
