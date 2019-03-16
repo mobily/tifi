@@ -55,11 +55,11 @@ npm install @mobily/tifi --save
 
 > Returns `None` if the value is `null` or `undefined`, otherwise returns the value wrapped in a `Some`.
 
-`function fromNullable<T>(value: T | null | undefined): Option<T>`
+`fromNullable<T>(value: T | null | undefined): Option<T>`
 
 ```typescript
-const option = fromNullable(null) // None
-const option = fromNullable('string') // Some('string')
+fromNullable(null) // None
+fromNullable('string') // Some('string')
 ```
 
 #### fromFalsy
