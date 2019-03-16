@@ -1,3 +1,4 @@
 export { head } from './head'
 export { tail } from './tail'
 export { get } from './get'
+export { drop } from './drop'
