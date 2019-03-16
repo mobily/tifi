@@ -22,7 +22,5 @@
     "rootDir": "src",
     "baseUrl": "src"
   },
-  "include": [
-    "src/**/*", "src/option/fromNullable.test.ts"
-  ]
+  "exclude": ["**/*.test.ts"]
 }
