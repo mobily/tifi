@@ -1,6 +1,6 @@
 {
   "name": "@mobily/tifi",
-  "description": "🤓 Tifi (abbreviation for There, I fixed it!) solves a problem of the existence of both `undefined` and `null`.",
+  "description": "🤓 Tifi solves a problem of the existence of both `undefined` and `null`.",
   "version": "0.0.4",
   "scripts": {
     "clean": "rm -rf ./dist",

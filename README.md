@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  🤓 Abbreviation for `There, I fixed it` .
+  🤓 Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. It's also an abbreviation for <code>There, I fixed it</code>.
 </h4>
 
 <p align="center">
