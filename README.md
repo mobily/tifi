@@ -27,6 +27,33 @@
   </a>
 </p>
 
+- [Installation](#installation)
+- [Example](#example)
+- [Api Reference](#api-reference)
+  - [Option](#option)
+    - [fromNullable](#fromnullable)
+    - [fromFalsy](#fromfalsy)
+    - [fromPredicate](#frompredicate)
+    - [isSome](#issome)
+    - [isNone](#isnone)
+    - [flatMap](#flatmap)
+    - [mapNullable](#mapnullable)
+    - [map](#map)
+    - [mapWithDefault](#mapwithdefault)
+    - [getWithDefault](#getwithdefault)
+    - [toNullable](#tonullable)
+    - [toUndefined](#toundefined)
+  - [List](#list)
+    - [head](#head)
+    - [tail](#tail)
+    - [get](#get)
+    - [getBy](#getby)
+    - [take](#take)
+    - [drop](#drop)
+    - [splitAt](#splitat)
+- [Contributors](#contributors)
+- [License](#license)
+
 ## Installation
 
 ```shell
@@ -50,10 +77,6 @@ npm install @mobily/tifi --save
 ```typescript
 type Option<T> = None | Some<T>
 ```
-
-#### Some
-
-#### None
 
 #### fromNullable
 
