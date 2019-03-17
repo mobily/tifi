@@ -214,7 +214,16 @@ pipe(
 
 #### head
 
-> TODO
+> If the list is empty or the first value is `undefined` or `null`, returns `None`, otherwise returns the first element in the list wrapped in a `Some`.
+
+`head<T>(list: T[]): Option<T>`
+
+```typescript
+pipe(
+  head([1, 2, 3]), // Some(1)
+  getWithDefault(0), // 1
+)
+```
 
 #### tail
 
