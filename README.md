@@ -55,6 +55,7 @@ npm install @mobily/tifi --save
     - [mapNullable](#mapnullable)
     - [map](#map)
     - [mapWithDefault](#mapwithdefault)
+    - [getExn](#getexn)
     - [getWithDefault](#getwithdefault)
     - [toNullable](#tonullable)
     - [toUndefined](#toundefined)
@@ -183,7 +184,21 @@ pipe(
 pipe(
   fromNullable(null), // None
   mapWithDefault(0, _ => 1), // Some(0)
-  get, // 0
+  getExn, // 0
+)
+```
+
+#### getExn
+
+> If the option is `Some` value, returns `value`, otherwise raises an error.
+
+`getExn<T>(option: Option<T>): T | never`
+
+```typescript
+pipe(
+  fromNullable('string'), // Some('string')
+  flatMap(_ => None), // None
+  getExn, // raises an error
 )
 ```
 
