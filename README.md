@@ -306,7 +306,17 @@ pipe(
 
 #### drop
 
-> TODO
+> If the list has fewer than `n` elements, returns `None`, otherwise returns a list obtained by dropping the first `n` elements.
+
+`drop<T>(n: number, list: T[]): Option<T[]>`
+
+```typescript
+pipe(
+  drop(1, [1, 2, 3]), // Some([2, 3])
+  flatMap(head), // Some(2)
+  getWithDefault(0), // 2
+)
+```
 
 #### splitAt
 
