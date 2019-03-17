@@ -27,9 +27,24 @@
   </a>
 </p>
 
-- [Installation](#installation)
-- [Example](#example)
-- [Api Reference](#api-reference)
+## Installation
+
+```shell
+yarn add @mobily/tifi
+```
+
+or with `npm`
+
+```shell
+npm install @mobily/tifi --save
+```
+
+## Example
+
+> TODO
+
+## Api Reference
+
   - [Option](#option)
     - [fromNullable](#fromnullable)
     - [fromFalsy](#fromfalsy)
@@ -51,26 +66,6 @@
     - [take](#take)
     - [drop](#drop)
     - [splitAt](#splitat)
-- [Contributors](#contributors)
-- [License](#license)
-
-## Installation
-
-```shell
-yarn add @mobily/tifi
-```
-
-or with `npm`
-
-```shell
-npm install @mobily/tifi --save
-```
-
-## Example
-
-> TODO
-
-## Api Reference
 
 ### Option
 
