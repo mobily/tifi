@@ -260,7 +260,17 @@ pipe(
 
 #### tail
 
-> TODO
+> If the list is empty, returns `None`, otherwise returns everything except the first element of the list.
+
+`tail<T>(list: T[]): Option<T[]>`
+
+```typescript
+pipe(
+  tail([1, 2, 3]), // Some([2, 3])
+  flatMap(list => get(2, list)), // None
+  getWithDefault(0), // 0
+)
+```
 
 #### get
 
@@ -320,7 +330,18 @@ pipe(
 
 #### splitAt
 
-> TODO
+> If the index is larger than the list length, returns `None`, otherwise split the list at position `index`.
+
+`splitAt<T>(index: number, list: T[]): Option<Tuple<T>>`
+
+```typescript
+pipe(
+  splitAt(2, [1, 2, 3, 4]), // Some([[1, 2], [3, 4]])
+  flatMap(head), // Some([1, 2])
+  flatMap(list => getBy(value => value % 2 === 0, list)), // Some(2)
+  getExn, // 2
+)
+```
 
 ## Contributors
 
