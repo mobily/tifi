@@ -292,7 +292,17 @@ pipe(
 
 #### take
 
-> TODO
+> If the list has fewer than `n` elements, returns `None`, otherwise returns a list with the first `n` elements from `list`.
+
+`take<T>(n: number, list: T[]): Option<T[]>`
+
+```typescript
+pipe(
+  take(2, [1, 2, 3]), // Some([1, 2])
+  flatMap(list => getBy(value => value % 2 === 0, list)), // Some(2)
+  getWithDefault(0), // 2
+)
+```
 
 #### drop
 
