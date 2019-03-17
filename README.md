@@ -247,7 +247,7 @@ pipe(
 
 #### head
 
-> If the list is empty or the first value is `undefined` or `null`, returns `None`, otherwise returns the first element in the list wrapped in a `Some`.
+> If the list is empty or the first value is `undefined` or `null`, returns `None`, otherwise returns the first element in the list wrapped in `Some`.
 
 `head<T>(list: T[]): Option<T>`
 
@@ -264,11 +264,31 @@ pipe(
 
 #### get
 
-> TODO
+> If the index is larger than the list length, returns `None`, otherwise returns the nth element in the list wrapped in `Some`.
+
+`get<T>(index: number, list: T[]): Option<T>`
+
+```typescript
+pipe(
+  get(1, [1, 2, 3]), // Some(2)
+  map(value => value * 2), // Some(4)
+  getExn, // 4
+)
+```
 
 #### getBy
 
-> TODO
+> If no element satisfies the predicate function, returns `None`, otherwise returns the first value in the list wrapped in `Some` that satisfies the predicate function.
+
+`getBy<T>(predicate: (value: T, index: number) => boolean, list: T[]): Option<T>`
+
+```typescript
+pipe(
+  getBy(str => str.length === 2, ['a', 'ab', 'bc']), // Some('ab')
+  map(str => `${str}cde`), // Some('abcde'),
+  getWithDefault('xyz'), // abcde
+)
+```
 
 #### take
 
