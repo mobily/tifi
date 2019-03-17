@@ -191,7 +191,7 @@ pipe(
 ```typescript
 pipe(
   fromNullable('string'), // Some('string')
-  flatMap(_value => None), // None
+  flatMap(_ => None), // None
   toNullable, // null
 )
 ```
@@ -205,7 +205,7 @@ pipe(
 ```typescript
 pipe(
   fromNullable('string'), // Some('string')
-  flatMap(_value => None), // None
+  flatMap(_ => None), // None
   toUndefined, // undefined
 )
 ```
