@@ -57,7 +57,7 @@ type Option<T> = None | Some<T>
 
 #### fromNullable
 
-> Returns `None` if the value is `null` or `undefined`, otherwise returns the value wrapped in a `Some`.
+> If the value is `null` or `undefined`, returns `None`, otherwise returns the value wrapped in a `Some`.
 
 `fromNullable<T>(value: T | null | undefined): Option<T>`
 
@@ -68,7 +68,7 @@ fromNullable('string') // Some('string')
 
 #### fromFalsy
 
-> Returns `None` if the value is falsy, otherwise returns the value wrapped in a `Some`.
+> If the value is falsy, returns `None`, otherwise returns the value wrapped in a `Some`.
 
 `fromFalsy<T>(value: T): Option<T>`
 
@@ -82,7 +82,7 @@ fromFalsy(1) // Some(1)
 
 #### fromPredicate
 
-> Returns `None` if the predicate returns `false`, otherwise returns the value wrapped in a `Some`.
+> If the predicate returns `false`, returns `None`, otherwise returns the value wrapped in a `Some`.
 
 `fromPredicate<T>(predicate: (value: T) => boolean, value: T): Option<T>`
 
@@ -93,7 +93,7 @@ fromPredicate(obj => obj.prop === 'string', { prop: 'string' }) // Some({ props:
 
 #### isSome
 
-> Returns `true` if the option is an instance of `Some`.
+> If the option is an instance of `Some`, returns `true`.
 
 `isSome<T>(option: Option<T>): boolean`
 
@@ -104,7 +104,7 @@ isSome(option) // true
 
 #### isNone
 
-> Returns `true` if the option is `None`.
+> If the option is `None`, returns `true`.
 
 `isNone<T>(option: Option<T>): boolean`
 
@@ -115,31 +115,100 @@ isNone(option) // true
 
 #### flatMap
 
-> TODO
+> If the option is `Some` value, returns the result of `fn`, otherwise returns `None`. The function `fn` must have a return type of `Option<T>`.
+
+`flatMap<T, R>(fn: (value: T) => Option<R>) => (option: Option<T>): Option<R>`
+
+```typescript
+pipe(
+  fromNullable(null), // None
+  flatMap(_ => Some(1)), // Some(1)
+  getWithDefault(0), // 1
+)
+```
 
 #### mapNullable
 
-> TODO
+> If the value returned from `fn` is `null` or `undefined` returns `None`.
+
+`mapNullable<T, R>(fn: (value: T) => R) => (option: Option<T>): Option<R>`
+
+```typescript
+pipe(
+  fromNullable(null), // None
+  mapNullable(_ => 1), // Some(1)
+  getWithDefault(0), // 1
+)
+```
 
 #### map
 
-> TODO
+> If the option is `Some` value, returns `Some`, otherwise returns `None`.
+
+`map<T, R>(fn: (value: T) => R) => (option: Option<T>): Option<R>`
+
+```typescript
+pipe(
+  fromNullable(null), // None
+  map(_ => 1), // None
+  getWithDefault(0), // 0
+)
+```
 
 #### mapWithDefault
 
-> TODO
+> If the option is `Some` value, returns the result of `fn`, otherwise returns `defaultValue`.
+
+`mapWithDefault<T, R>(defaultValue: R, fn: (value: T) => R) => (option: Option<T>): Option<R>`
+
+```typescript
+pipe(
+  fromNullable(null), // None
+  mapWithDefault(0, _ => 1), // Some(0)
+  get, // 0
+)
+```
 
 #### getWithDefault
 
-> TODO
+> If the option is `Some` value, returns `value`, otherwise returns `defaultValue`.
+
+`getWithDefault<T>(defaultValue: T) => (option: Option<T>): T`
+
+```typescript
+pipe(
+  fromNullable(null), // None
+  getWithDefault(1), // 1
+)
+```
 
 #### toNullable
 
-> TODO
+> If the option is `Some` value, returns `value`, otherwise returns `null`.
+
+`toNullable<T>(option: Option<T>): T | null`
+
+```typescript
+pipe(
+  fromNullable('string'), // Some('string')
+  flatMap(_value => None), // None
+  toNullable, // null
+)
+```
 
 #### toUndefined
 
-> TODO
+> If the option is `Some` value, returns `value`, otherwise returns `undefined`.
+
+`toUndefined<T>(option: Option<T>): T | undefined`
+
+```typescript
+pipe(
+  fromNullable('string'), // Some('string')
+  flatMap(_value => None), // None
+  toUndefined, // undefined
+)
+```
 
 ### List
 
