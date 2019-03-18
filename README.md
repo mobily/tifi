@@ -268,6 +268,7 @@ pipe(
 pipe(
   tail([1, 2, 3]), // Some([2, 3])
   flatMap(list => get(2, list)), // None
+  // or flatMap(get(2)), all functions are curried
   getWithDefault(0), // 0
 )
 ```
@@ -310,6 +311,7 @@ pipe(
 pipe(
   take(2, [1, 2, 3]), // Some([1, 2])
   flatMap(list => getBy(value => value % 2 === 0, list)), // Some(2)
+  // or flatMap(getBy(value => value % 2 === 0)), all functions are curried
   getWithDefault(0), // 2
 )
 ```
@@ -332,13 +334,14 @@ pipe(
 
 > If the index is larger than the list length, returns `None`, otherwise split the list at position `index`.
 
-`splitAt<T>(index: number, list: T[]): Option<Tuple<T>>`
+`splitAt<T>(index: number, list: T[]): Option<[T[], T[]]>`
 
 ```typescript
 pipe(
   splitAt(2, [1, 2, 3, 4]), // Some([[1, 2], [3, 4]])
   flatMap(head), // Some([1, 2])
   flatMap(list => getBy(value => value % 2 === 0, list)), // Some(2)
+  // or flatMap(getBy(value => value % 2 === 0)), all functions are curried
   getExn, // 2
 )
 ```
