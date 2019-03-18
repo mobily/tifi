@@ -136,7 +136,7 @@ isNone(option) // true
 
 > If the option is `Some` value, returns the result of `fn`, otherwise returns `None`. The function `fn` must have a return type of `Option<T>`.
 
-`flatMap<T, R>(fn: (value: T) => Option<R>) => (option: Option<T>): Option<R>`
+`flatMap<T, R>(fn: (value: T) => Option<R>, option: Option<T>): Option<R>`
 
 ```typescript
 pipe(
@@ -150,7 +150,7 @@ pipe(
 
 > If the value returned from `fn` is `null` or `undefined` returns `None`.
 
-`mapNullable<T, R>(fn: (value: T) => R) => (option: Option<T>): Option<R>`
+`mapNullable<T, R>(fn: (value: T) => R, option: Option<T>): Option<R>`
 
 ```typescript
 pipe(
@@ -164,7 +164,7 @@ pipe(
 
 > If the option is `Some` value, returns `Some`, otherwise returns `None`.
 
-`map<T, R>(fn: (value: T) => R) => (option: Option<T>): Option<R>`
+`map<T, R>(fn: (value: T) => R, option: Option<T>): Option<R>`
 
 ```typescript
 pipe(
@@ -178,7 +178,7 @@ pipe(
 
 > If the option is `Some` value, returns the result of `fn`, otherwise returns `defaultValue`.
 
-`mapWithDefault<T, R>(defaultValue: R, fn: (value: T) => R) => (option: Option<T>): Option<R>`
+`mapWithDefault<T, R>(defaultValue: R, fn: (value: T) => R, option: Option<T>): Option<R>`
 
 ```typescript
 pipe(
@@ -206,7 +206,7 @@ pipe(
 
 > If the option is `Some` value, returns `value`, otherwise returns `defaultValue`.
 
-`getWithDefault<T>(defaultValue: T) => (option: Option<T>): T`
+`getWithDefault<T>(defaultValue: T, option: Option<T>): T`
 
 ```typescript
 pipe(
