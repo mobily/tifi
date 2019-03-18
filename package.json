@@ -20,8 +20,10 @@
   "keywords": [
     "typescript",
     "functional-programming",
+    "monad",
+    "option",
     "option-type",
-    "monad"
+    "list"
   ],
   "author": "mobily",
   "homepage": "https://github.com/mobily/tifi#readme",
