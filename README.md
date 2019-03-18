@@ -1,9 +1,9 @@
 <h1 align="center">
-  Tifi
+  Tifi (abbreviation for There, I fixed it!)
 </h1>
 
 <blockquote align="center">
-  🤓 Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. It's also an abbreviation for <code>There, I fixed it</code>.
+  🤓 Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. Tifi is inspired by the OCaml/Reason utilities for the option data type.
 </blockquote>
 
 <p align="center">
@@ -76,7 +76,7 @@ type Option<T> = None | Some<T>
 
 #### fromNullable
 
-> If the value is `null` or `undefined`, returns `None`, otherwise returns the value wrapped in a `Some`.
+> If the value is `null` or `undefined`, returns `None`, otherwise returns the value wrapped in `Some`.
 
 `fromNullable<T>(value: T | null | undefined): Option<T>`
 
@@ -87,7 +87,7 @@ fromNullable('string') // Some('string')
 
 #### fromFalsy
 
-> If the value is falsy, returns `None`, otherwise returns the value wrapped in a `Some`.
+> If the value is `falsy`, returns `None`, otherwise returns the value wrapped in `Some`.
 
 `fromFalsy<T>(value: T): Option<T>`
 
@@ -101,7 +101,7 @@ fromFalsy(1) // Some(1)
 
 #### fromPredicate
 
-> If the predicate returns `false`, returns `None`, otherwise returns the value wrapped in a `Some`.
+> If the predicate returns `false`, returns `None`, otherwise returns the value wrapped in `Some`.
 
 `fromPredicate<T>(predicate: (value: T) => boolean, value: T): Option<T>`
 
