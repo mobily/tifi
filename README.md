@@ -41,7 +41,96 @@ npm install @mobily/tifi --save
 
 ## Example
 
-> TODO
+[https://stackblitz.com/edit/tifi](https://stackblitz.com/edit/tifi?embed=1&file=index.ts)
+
+<details>
+<summary>iTunes API (look up an album by artist id)</summary>
+```typescript
+import { pipe } from '@mobily/tifi'
+import { flatMap, fromNullable, getWithDefault, map } from '@mobily/tifi/Option'
+import { getBy } from '@mobily/tifi/List'
+
+interface Artist {
+  amgArtistId: number
+  artistId: number
+  artistLinkUrl: string
+  artistName: string
+  artistType: string
+  primaryGenreId: number
+  primaryGenreName: string
+  wrapperType: 'artist'
+}
+
+interface Album {
+  amgArtistId: number
+  artistId: number
+  artistName: string
+  artistViewUrl: string
+  artworkUrl60: string
+  artworkUrl100: string
+  collectionCensoredName: string
+  collectionExplicitness: string
+  collectionId: number
+  collectionName: string
+  collectionPrice: number
+  collectionType: string
+  collectionViewUrl: string
+  copyright: string
+  country: string
+  currency: string
+  primaryGenreName: string
+  releaseDate: string
+  trackCount: number
+  wrapperType: 'collection'
+}
+
+interface Result {
+  resultCount: number
+  results: Array<Artist | Album>
+}
+
+interface Item {
+  name: string
+  thumbnail: string
+}
+
+const tap = <T>(str: T): void => console.log(str)
+
+const responseJSON = (response: any) => response.json()
+
+const fetchAlbumsByArtistId = (artistId: string) =>
+  fetch(`https://itunes.apple.com/lookup?id=${artistId}&entity=album`).then(
+    responseJSON,
+  )
+
+const isAlbum = (albumOrArtist: Artist | Album) =>
+  albumOrArtist.wrapperType === 'collection'
+
+const getItemParams = (album: Artist | Album): Item => {
+  const { collectionName, artworkUrl100 } = album as Album
+  return {
+    name: collectionName,
+    thumbnail: artworkUrl100,
+  }
+}
+
+const defaultItem = {
+  name: 'Nothing found!',
+  thumbnail: 'https://via.placeholder.com/100',
+}
+
+fetchAlbumsByArtistId('984643042')
+  .then((result: Result) =>
+    pipe(
+      fromNullable(result.results),
+      flatMap(getBy(isAlbum)),
+      map(getItemParams),
+      getWithDefault(defaultItem),
+    ),
+  )
+  .then(tap)
+```
+</details>
 
 ## Api Reference
 
