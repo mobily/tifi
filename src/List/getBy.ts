@@ -4,12 +4,12 @@ import { Option } from '../internal/types'
 
 export function getBy<T>(
   predicate: (value: T, index: number) => boolean,
-): (list: T[]) => Option<T[]>
+): (list: T[]) => Option<T>
 
 export function getBy<T>(
   predicate: (value: T, index: number) => boolean,
   list: T[],
-): Option<T[]>
+): Option<T>
 
 export function getBy<T>(
   predicate: (value: T, index: number) => boolean,
