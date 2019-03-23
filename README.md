@@ -45,6 +45,7 @@ npm install @mobily/tifi --save
 
 <details>
 <summary>iTunes API (look up an album by artist id)</summary>
+
 ```typescript
 import { pipe } from '@mobily/tifi'
 import { flatMap, fromNullable, getWithDefault, map } from '@mobily/tifi/Option'
@@ -130,6 +131,7 @@ fetchAlbumsByArtistId('984643042')
   )
   .then(tap)
 ```
+
 </details>
 
 ## Api Reference
