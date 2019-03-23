@@ -22,5 +22,5 @@
     "rootDir": "src",
     "baseUrl": "src"
   },
-  "exclude": ["**/*.test.ts"]
+  "exclude": ["**/*.test.ts", "playground"]
 }
