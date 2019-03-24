@@ -2,19 +2,19 @@ import { Some } from './Some'
 import { None } from './None'
 import { isNone } from './isNone'
 
-import { Option } from '../internal/types'
+import { Option, Validation } from '../internal/types'
 
 export function map<T, R>(
-  fn: (value: T) => NonNullable<R>,
+  fn: (value: Validation<T>) => NonNullable<R>,
 ): (option: Option<T>) => Option<R>
 
 export function map<T, R>(
-  fn: (value: T) => NonNullable<R>,
+  fn: (value: Validation<T>) => NonNullable<R>,
   option: Option<T>,
 ): Option<R>
 
 export function map<T, R>(
-  fn: (value: T) => NonNullable<R>,
+  fn: (value: Validation<T>) => NonNullable<R>,
   option?: Option<T>,
 ): any {
   if (typeof option === 'undefined') {
