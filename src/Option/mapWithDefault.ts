@@ -1,23 +1,23 @@
 import { Some } from './Some'
 import { isNone } from './isNone'
 
-import { Option, ExtractValue } from '../internal/types'
+import { Option } from '../internal/types'
 
 export function mapWithDefault<T, R extends NonNullable<{}>>(
   defaultValue: R,
-  fn: (value: ExtractValue<T>) => R,
+  fn: (value: T) => R,
 ): (option: Option<T>) => Option<R>
 
 export function mapWithDefault<T, R extends NonNullable<{}>>(
   defaultValue: R,
-  fn: (value: ExtractValue<T>) => R,
+  fn: (value: T) => R,
   option: Option<T>,
 ): Option<R>
 
 // TODO: Curry3
 export function mapWithDefault<T, R extends NonNullable<{}>>(
   defaultValue: R,
-  fn: (value: ExtractValue<T>) => R,
+  fn: (value: T) => R,
   option?: Option<T>,
 ): any {
   if (typeof option === 'undefined') {
