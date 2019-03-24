@@ -8,4 +8,4 @@ export const fromPredicate = <A, B>(
   error: B,
   value: A,
 ): Result<A, B> =>
-  predicate(value) ? fromNullable(value, error) : Error(error)
+  predicate(value) ? fromNullable(error, value) : Error(error)
