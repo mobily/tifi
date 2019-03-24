@@ -1,88 +1,85 @@
-import { Option, UnaryFunction } from './internal/types'
+import { UnaryFunction } from './internal/types'
 
-export function pipe<T, R>(
-  source: Option<T>,
-  result: UnaryFunction<Option<T>, R>,
-): R
+export function pipe<T, R>(source: T, result: UnaryFunction<T, R>): R
 
 export function pipe<T, A, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  result: UnaryFunction<Option<A>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  result: UnaryFunction<A, R>,
 ): R
 
 export function pipe<T, A, B, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  result: UnaryFunction<Option<B>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  result: UnaryFunction<B, R>,
 ): R
 
 export function pipe<T, A, B, C, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  op3: UnaryFunction<Option<B>, Option<C>>,
-  result: UnaryFunction<Option<C>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  op3: UnaryFunction<B, C>,
+  result: UnaryFunction<C, R>,
 ): R
 
 export function pipe<T, A, B, C, D, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  op3: UnaryFunction<Option<B>, Option<C>>,
-  op4: UnaryFunction<Option<C>, Option<D>>,
-  result: UnaryFunction<Option<D>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  op3: UnaryFunction<B, C>,
+  op4: UnaryFunction<C, D>,
+  result: UnaryFunction<D, R>,
 ): R
 
 export function pipe<T, A, B, C, D, E, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  op3: UnaryFunction<Option<B>, Option<C>>,
-  op4: UnaryFunction<Option<C>, Option<D>>,
-  op5: UnaryFunction<Option<D>, Option<E>>,
-  result: UnaryFunction<Option<E>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  op3: UnaryFunction<B, C>,
+  op4: UnaryFunction<C, D>,
+  op5: UnaryFunction<D, E>,
+  result: UnaryFunction<E, R>,
 ): R
 
 export function pipe<T, A, B, C, D, E, F, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  op3: UnaryFunction<Option<B>, Option<C>>,
-  op4: UnaryFunction<Option<C>, Option<D>>,
-  op5: UnaryFunction<Option<D>, Option<E>>,
-  op6: UnaryFunction<Option<E>, Option<F>>,
-  result: UnaryFunction<Option<F>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  op3: UnaryFunction<B, C>,
+  op4: UnaryFunction<C, D>,
+  op5: UnaryFunction<D, E>,
+  op6: UnaryFunction<E, F>,
+  result: UnaryFunction<F, R>,
 ): R
 
 export function pipe<T, A, B, C, D, E, F, G, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  op3: UnaryFunction<Option<B>, Option<C>>,
-  op4: UnaryFunction<Option<C>, Option<D>>,
-  op5: UnaryFunction<Option<D>, Option<E>>,
-  op6: UnaryFunction<Option<E>, Option<F>>,
-  op7: UnaryFunction<Option<F>, Option<G>>,
-  result: UnaryFunction<Option<G>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  op3: UnaryFunction<B, C>,
+  op4: UnaryFunction<C, D>,
+  op5: UnaryFunction<D, E>,
+  op6: UnaryFunction<E, F>,
+  op7: UnaryFunction<F, G>,
+  result: UnaryFunction<G, R>,
 ): R
 
 export function pipe<T, A, B, C, D, E, F, G, H, R>(
-  source: Option<T>,
-  op1: UnaryFunction<Option<T>, Option<A>>,
-  op2: UnaryFunction<Option<A>, Option<B>>,
-  op3: UnaryFunction<Option<B>, Option<C>>,
-  op4: UnaryFunction<Option<C>, Option<D>>,
-  op5: UnaryFunction<Option<D>, Option<E>>,
-  op6: UnaryFunction<Option<E>, Option<F>>,
-  op7: UnaryFunction<Option<F>, Option<G>>,
-  op8: UnaryFunction<Option<G>, Option<H>>,
-  result: UnaryFunction<Option<H>, R>,
+  source: T,
+  op1: UnaryFunction<T, A>,
+  op2: UnaryFunction<A, B>,
+  op3: UnaryFunction<B, C>,
+  op4: UnaryFunction<C, D>,
+  op5: UnaryFunction<D, E>,
+  op6: UnaryFunction<E, F>,
+  op7: UnaryFunction<F, G>,
+  op8: UnaryFunction<G, H>,
+  result: UnaryFunction<H, R>,
 ): R
 
 export function pipe<T, R>(
-  source: Option<T>,
+  source: T,
   ...fns: Array<UnaryFunction<any, any>>
 ): R {
   return fns.reduce((prev, fn) => fn(prev), source as any)
