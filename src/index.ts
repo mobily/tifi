@@ -1,2 +1,2 @@
 export { pipe } from './pipe'
-export { Option } from './internal/types'
+export { Option, Result } from './internal/types'
