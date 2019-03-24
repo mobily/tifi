@@ -1,4 +1,8 @@
 export { Ok } from './Ok'
 export { Error } from './Error'
+export { fromNullable } from './fromNullable'
+export { fromPredicate } from './fromPredicate'
 export { isOk } from './isOk'
 export { isError } from './isError'
+export { map } from './map'
+export { match } from './match'
