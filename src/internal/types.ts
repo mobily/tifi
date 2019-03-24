@@ -5,7 +5,11 @@ interface Fn<T> {
 
 export type Some<T> = Fn<T> & { _: 'Some' }
 export type None = Fn<any> & { _: 'None' }
+export type Ok<T> = Fn<T> & { _: 'Ok' }
+export type Error<T> = Fn<T> & { _: 'Error' }
 
 export type Option<T> = None | Some<T>
+export type Result<T, R> = Ok<T> | Error<R>
+
 export type UnaryFunction<T, R> = (source: T) => R
 export type ExtractValue<T> = T extends NonNullable<infer R> ? R : never
