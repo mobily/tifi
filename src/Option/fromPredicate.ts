@@ -1,9 +1,9 @@
 import { None } from './None'
 import { fromNullable } from './fromNullable'
 
-import { Option } from '../internal/types'
+import { Option, Predicate } from '../internal/types'
 
 export const fromPredicate = <T>(
-  predicate: (value: T) => boolean,
+  predicate: Predicate<T>,
   value: T,
 ): Option<T> => (predicate(value) ? fromNullable(value) : None)
