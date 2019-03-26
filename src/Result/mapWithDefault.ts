@@ -18,11 +18,11 @@ export function mapWithDefault<A, B, R extends NonNullable<{}>>(
 export function mapWithDefault<A, B, R extends NonNullable<{}>>(
   defaultValue: R,
   fn: MapFn<A, R>,
-  option?: Result<A, B>,
+  result?: Result<A, B>,
 ): any {
-  if (typeof option === 'undefined') {
-    return (opt: Result<A, B>) => mapWithDefault(defaultValue, fn, opt)
+  if (typeof result === 'undefined') {
+    return (res: Result<A, B>) => mapWithDefault(defaultValue, fn, res)
   }
 
-  return Ok(isError(option) ? defaultValue : fn(option.value))
+  return Ok(isError(result) ? defaultValue : fn(result.value))
 }
