@@ -158,6 +158,7 @@ fetchAlbumsByArtistId('984643042')
     - [take](#take)
     - [drop](#drop)
     - [splitAt](#splitat)
+  - [Result](#result)
 
 ### Option
 
@@ -436,6 +437,10 @@ pipe(
   getExn, // 2
 )
 ```
+
+### Result
+
+> TODO
 
 ## Contributors
 
