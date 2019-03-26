@@ -23,7 +23,9 @@
     "monad",
     "option",
     "option-type",
-    "list"
+    "list",
+    "result",
+    "result-type"
   ],
   "author": "mobily",
   "homepage": "https://github.com/mobily/tifi#readme",
