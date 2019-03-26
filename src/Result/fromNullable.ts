@@ -6,8 +6,5 @@ import { Result } from '../internal/types'
 export const fromNullable = <A, B>(
   error: B,
   value: A | null | undefined,
-): Result<A, B> => {
-  return value === null || typeof value === 'undefined'
-    ? Error(error)
-    : Ok(value)
-}
+): Result<A, B> =>
+  value === null || typeof value === 'undefined' ? Error(error) : Ok(value)
