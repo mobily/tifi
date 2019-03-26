@@ -148,6 +148,7 @@ fetchAlbumsByArtistId('984643042')
     - [mapWithDefault](#mapwithdefault)
     - [getExn](#getexn)
     - [getWithDefault](#getwithdefault)
+    - [match](#match)
     - [toNullable](#tonullable)
     - [toUndefined](#toundefined)
   - [List](#list)
@@ -306,6 +307,10 @@ pipe(
   getWithDefault(1), // 1
 )
 ```
+
+#### match
+
+> TODO
 
 #### toNullable
 
