@@ -2,19 +2,19 @@ import { Ok } from './Ok'
 import { Error } from './Error'
 import { isError } from './isError'
 
-import { Result, Validation } from '../internal/types'
+import { Result, MapFn } from '../internal/types'
 
 export function map<A, B, R>(
-  fn: (value: Validation<A>) => NonNullable<R>,
+  fn: MapFn<A, NonNullable<R>>,
 ): (result: Result<A, B>) => Result<R, B>
 
 export function map<A, B, R>(
-  fn: (value: Validation<A>) => NonNullable<R>,
+  fn: MapFn<A, NonNullable<R>>,
   result: Result<A, B>,
 ): Result<R, B>
 
 export function map<A, B, R>(
-  fn: (value: Validation<A>) => NonNullable<R>,
+  fn: MapFn<A, NonNullable<R>>,
   result?: Result<A, B>,
 ): any {
   if (typeof result === 'undefined') {

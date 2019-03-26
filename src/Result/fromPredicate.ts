@@ -1,10 +1,10 @@
 import { fromNullable } from './fromNullable'
 import { Error } from './Error'
 
-import { Result } from '../internal/types'
+import { Result, Predicate } from '../internal/types'
 
 export const fromPredicate = <A, B>(
-  predicate: (value: A) => boolean,
+  predicate: Predicate<A>,
   error: B,
   value: A,
 ): Result<A, B> =>
