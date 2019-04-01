@@ -316,7 +316,7 @@ pipe(
 
 ```typescript
 pipe(
-  fromNullable(2), // Some('string')
+  fromNullable(2), // Some(2)
   match(n => n * 10, () => 0), // 20
 )
 ```
@@ -453,6 +453,10 @@ pipe(
 ```
 
 ### Result
+
+```typescript
+type Result<A, B> = Ok<A> | Error<T>
+```
 
 > TODO
 
