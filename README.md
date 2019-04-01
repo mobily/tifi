@@ -471,7 +471,14 @@ type Result<A, B> = Ok<A> | Error<B>
 
 #### fromNullable
 
-> TODO
+> If the value is `null` or `undefined`, returns the `error` value wrapped in `Error`, otherwise returns `Ok`.
+
+`fromNullable<A, B>(error: B, value: A | null | undefined): Result<A, B>`
+
+```typescript
+fromNullable('error', null) // Error('error')
+fromNullable('error', 'string') // Ok('string')
+```
 
 #### fromFalsy
 
