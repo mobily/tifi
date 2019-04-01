@@ -160,6 +160,17 @@ fetchAlbumsByArtistId('984643042')
     - [drop](#drop)
     - [splitAt](#splitat)
   - [Result](#result)
+    - [fromNullable](#fromnullable)
+    - [fromFalsy](#fromfalsy)
+    - [fromPredicate](#frompredicate)
+    - [isOk](#isok)
+    - [isError](#iserror)
+    - [flatMap](#flatmap)
+    - [map](#map)
+    - [mapWithDefault](#mapwithdefault)
+    - [getExn](#getexn)
+    - [getWithDefault](#getwithdefault)
+    - [match](#match)
 
 ### Option
 
@@ -455,8 +466,50 @@ pipe(
 ### Result
 
 ```typescript
-type Result<A, B> = Ok<A> | Error<T>
+type Result<A, B> = Ok<A> | Error<B>
 ```
+
+#### fromNullable
+
+> TODO
+
+#### fromFalsy
+
+> TODO
+
+#### fromPredicate
+
+> TODO
+
+#### isOk
+
+> TODO
+
+#### isError
+
+> TODO
+
+#### flatMap
+
+> TODO
+
+#### map
+
+> TODO
+
+#### mapWithDefault
+
+> TODO
+
+#### getExn
+
+> TODO
+
+#### getWithDefault
+
+> TODO
+
+#### match
 
 > TODO
 
