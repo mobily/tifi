@@ -310,7 +310,16 @@ pipe(
 
 #### match
 
-> TODO
+> If the option is `Some` value, returns the result of `someFn`, otherwise returns the result of `noneFn`.
+
+`match<T, R>(someFn: (value: T) => R, noneFn: () => R, option: Option<T>): R`
+
+```typescript
+pipe(
+  fromNullable(2), // Some('string')
+  match(n => n * 10, () => 0), // 20
+)
+```
 
 #### toNullable
 
