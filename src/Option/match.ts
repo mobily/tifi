@@ -2,19 +2,19 @@ import { isNone } from './isNone'
 
 import { Option } from '../internal/types'
 
-export function match<T, R extends {}>(
+export function match<T, R>(
   someFn: (value: T) => R,
   noneFn: () => R,
 ): (option: Option<T>) => R
 
-export function match<T, R extends {}>(
+export function match<T, R>(
   someFn: (value: T) => R,
   noneFn: () => R,
   option: Option<T>,
 ): R
 
 // TODO: Curry3
-export function match<T, R extends {}>(
+export function match<T, R>(
   someFn: (value: T) => R,
   noneFn: () => R,
   option?: Option<T>,

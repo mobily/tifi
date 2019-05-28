@@ -2,19 +2,19 @@ import { isError } from './isError'
 
 import { Result } from '../internal/types'
 
-export function match<A, B, R extends {}>(
+export function match<A, B, R>(
   ok: (value: A) => R,
   error: (value: B) => R,
 ): (result: Result<A, B>) => R
 
-export function match<A, B, R extends {}>(
+export function match<A, B, R>(
   ok: (value: A) => R,
   error: (value: B) => R,
   result: Result<A, B>,
 ): R
 
 // TODO: Curry3
-export function match<A, B, R extends {}>(
+export function match<A, B, R>(
   ok: (value: A) => R,
   error: (value: B) => R,
   result?: Result<A, B>,
