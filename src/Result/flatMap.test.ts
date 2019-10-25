@@ -12,7 +12,7 @@ describe('flatMap', () => {
         fromNullable('error', null),
         flatMap(_ => Ok(1)),
       ),
-    ).toEqual(Ok(1))
+    ).toEqual(Error('error'))
   })
 
   it('*', () => {
@@ -22,5 +22,14 @@ describe('flatMap', () => {
         flatMap(_ => Error('new error')),
       ),
     ).toEqual(Error('new error'))
+  })
+
+  it('*', () => {
+    expect(
+      pipe(
+        fromNullable('error', 'string'),
+        flatMap(_ => Ok(1)),
+      ),
+    ).toEqual(Ok(1))
   })
 })
