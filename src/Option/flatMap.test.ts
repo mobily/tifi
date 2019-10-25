@@ -12,7 +12,7 @@ describe('flatMap', () => {
         fromNullable(null),
         flatMap(_ => Some(1)),
       ),
-    ).toEqual(Some(1))
+    ).toEqual(None)
   })
 
   it('*', () => {
@@ -22,5 +22,14 @@ describe('flatMap', () => {
         flatMap(_ => None),
       ),
     ).toEqual(None)
+  })
+
+  it('*', () => {
+    expect(
+      pipe(
+        fromNullable('string'),
+        flatMap(_ => Some(1)),
+      ),
+    ).toEqual(Some(1))
   })
 })
