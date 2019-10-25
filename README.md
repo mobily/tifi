@@ -41,95 +41,15 @@ npm install @mobily/tifi --save
 
 ## Example
 
-[https://stackblitz.com/edit/tifi](https://stackblitz.com/edit/tifi?embed=1&file=index.ts)
+> TODO
 
 <details>
-<summary>iTunes API (look up an album by artist id)</summary>
+<summary>Example</summary>
 
 ```typescript
-import { pipe } from '@mobily/tifi'
-import { flatMap, fromNullable, getWithDefault, map } from '@mobily/tifi/Option'
-import { getBy } from '@mobily/tifi/List'
 
-interface Artist {
-  amgArtistId: number
-  artistId: number
-  artistLinkUrl: string
-  artistName: string
-  artistType: string
-  primaryGenreId: number
-  primaryGenreName: string
-  wrapperType: 'artist'
-}
+// TODO
 
-interface Album {
-  amgArtistId: number
-  artistId: number
-  artistName: string
-  artistViewUrl: string
-  artworkUrl60: string
-  artworkUrl100: string
-  collectionCensoredName: string
-  collectionExplicitness: string
-  collectionId: number
-  collectionName: string
-  collectionPrice: number
-  collectionType: string
-  collectionViewUrl: string
-  copyright: string
-  country: string
-  currency: string
-  primaryGenreName: string
-  releaseDate: string
-  trackCount: number
-  wrapperType: 'collection'
-}
-
-interface Result {
-  resultCount: number
-  results: Array<Artist | Album>
-}
-
-interface Item {
-  name: string
-  thumbnail: string
-}
-
-const tap = <T>(str: T): void => console.log(str)
-
-const responseJSON = (response: any) => response.json()
-
-const fetchAlbumsByArtistId = (artistId: string) =>
-  fetch(`https://itunes.apple.com/lookup?id=${artistId}&entity=album`).then(
-    responseJSON,
-  )
-
-const isAlbum = (albumOrArtist: Artist | Album) =>
-  albumOrArtist.wrapperType === 'collection'
-
-const getItemParams = (album: Artist | Album): Item => {
-  const { collectionName, artworkUrl100 } = album as Album
-  return {
-    name: collectionName,
-    thumbnail: artworkUrl100,
-  }
-}
-
-const defaultItem = {
-  name: 'Nothing found!',
-  thumbnail: 'https://via.placeholder.com/100',
-}
-
-fetchAlbumsByArtistId('984643042')
-  .then((result: Result) =>
-    pipe(
-      fromNullable(result.results),
-      flatMap(getBy(isAlbum)),
-      map(getItemParams),
-      getWithDefault(defaultItem),
-    ),
-  )
-  .then(tap)
 ```
 
 </details>
@@ -180,7 +100,7 @@ type Option<T> = None | Some<T>
 
 #### fromNullable
 
-> If the value is `null` or `undefined`, returns `None`, otherwise returns the value wrapped in `Some`.
+> If `value` is `null` or `undefined`, returns `None`, otherwise returns a value wrapped in `Some`.
 
 `fromNullable<T>(value: T | null | undefined): Option<T>`
 
@@ -191,7 +111,7 @@ fromNullable('string') // Some('string')
 
 #### fromFalsy
 
-> If the value is `falsy`, returns `None`, otherwise returns the value wrapped in `Some`.
+> If `value` is falsy, returns `None`, otherwise returns the value wrapped in `Some`.
 
 `fromFalsy<T>(value: T): Option<T>`
 
@@ -205,7 +125,7 @@ fromFalsy(1) // Some(1)
 
 #### fromPredicate
 
-> If the predicate returns `false`, returns `None`, otherwise returns the value wrapped in `Some`.
+> If `predicate` returns `false`, returns `None`, otherwise returns a value wrapped in `Some`.
 
 `fromPredicate<T>(predicate: (value: T) => boolean, value: T): Option<T>`
 
@@ -216,7 +136,7 @@ fromPredicate(obj => obj.prop === 'string', { prop: 'string' }) // Some({ props:
 
 #### isSome
 
-> If the option is an instance of `Some`, returns `true`.
+> If `option` is `Some`, returns `true`.
 
 `isSome<T>(option: Option<T>): boolean`
 
@@ -227,7 +147,7 @@ isSome(option) // true
 
 #### isNone
 
-> If the option is `None`, returns `true`.
+> If `option` is `None`, returns `true`.
 
 `isNone<T>(option: Option<T>): boolean`
 
@@ -238,21 +158,27 @@ isNone(option) // true
 
 #### flatMap
 
-> If the option is `Some` value, returns the result of `fn`, otherwise returns `None`. The function `fn` must have a return type of `Option<T>`.
+> If `option` is `Some`, returns a result of `fn`, otherwise returns `None`. Function `fn` must have a return type of `Option`.
 
 `flatMap<T, R>(fn: (value: T) => Option<R>, option: Option<T>): Option<R>`
 
 ```typescript
 pipe(
-  fromNullable(null), // None
+  fromNullable('string'), // Some('string')
   flatMap(_ => Some(1)), // Some(1)
   getWithDefault(0), // 1
+)
+
+pipe(
+  fromNullable(null), // None
+  flatMap(_ => Some(1)), // None
+  getWithDefault(0), // 0
 )
 ```
 
 #### mapNullable
 
-> If the value returned from `fn` is `null` or `undefined` returns `None`.
+> If a result of `fn` is `null` or `undefined` returns `None`.
 
 `mapNullable<T, R>(fn: (value: T) => R, option: Option<T>): Option<R>`
 
@@ -266,11 +192,17 @@ pipe(
 
 #### map
 
-> If the option is `Some` value, returns `Some`, otherwise returns `None`.
+> If `option` is `Some`, returns `Some`, otherwise returns `None`.
 
 `map<T, R>(fn: (value: T) => R, option: Option<T>): Option<R>`
 
 ```typescript
+pipe(
+  fromNullable(1), // Some(1)
+  map(n => n * 3), // Some(3)
+  getWithDefault(0), // 3
+)
+
 pipe(
   fromNullable(null), // None
   map(_ => 1), // None
@@ -280,7 +212,7 @@ pipe(
 
 #### mapWithDefault
 
-> If the option is `Some` value, returns the result of `fn`, otherwise returns `defaultValue`.
+> If `option` is `Some`, returns a result of `fn`, otherwise returns `defaultValue` wrapped in `Some`.
 
 `mapWithDefault<T, R>(defaultValue: R, fn: (value: T) => R, option: Option<T>): Option<R>`
 
@@ -294,7 +226,7 @@ pipe(
 
 #### getExn
 
-> If the option is `Some` value, returns `value`, otherwise raises an error.
+> If `option` is `Some`, returns `value` wrapped in `Some`, otherwise raises an error.
 
 `getExn<T>(option: Option<T>): T | never`
 
@@ -308,7 +240,7 @@ pipe(
 
 #### getWithDefault
 
-> If the option is `Some` value, returns `value`, otherwise returns `defaultValue`.
+> If `option` is `Some`, returns `value` wrapped in `Some`, otherwise returns `defaultValue`.
 
 `getWithDefault<T>(defaultValue: T, option: Option<T>): T`
 
@@ -321,7 +253,7 @@ pipe(
 
 #### match
 
-> If the option is `Some` value, returns the result of `someFn`, otherwise returns the result of `noneFn`.
+> If `option` is `Some`, returns a result of `someFn`, otherwise returns a result of `noneFn`.
 
 `match<T, R>(someFn: (value: T) => R, noneFn: () => R, option: Option<T>): R`
 
@@ -334,7 +266,7 @@ pipe(
 
 #### toNullable
 
-> If the option is `Some` value, returns `value`, otherwise returns `null`.
+> If `option` is `Some`, returns `value`, otherwise returns `null`.
 
 `toNullable<T>(option: Option<T>): T | null`
 
@@ -348,7 +280,7 @@ pipe(
 
 #### toUndefined
 
-> If the option is `Some` value, returns `value`, otherwise returns `undefined`.
+> If `option` is `Some`, returns `value`, otherwise returns `undefined`.
 
 `toUndefined<T>(option: Option<T>): T | undefined`
 
@@ -364,7 +296,7 @@ pipe(
 
 #### head
 
-> If the list is empty or the first value is `undefined` or `null`, returns `None`, otherwise returns the first element in the list wrapped in `Some`.
+> If `list` is empty or the first value is `undefined` or `null`, returns `None`, otherwise returns the first element wrapped in `Some`.
 
 `head<T>(list: T[]): Option<T>`
 
@@ -377,7 +309,7 @@ pipe(
 
 #### tail
 
-> If the list is empty, returns `None`, otherwise returns everything except the first element of the list.
+> If `list` is empty, returns `None`, otherwise returns everything except the first element of the list.
 
 `tail<T>(list: T[]): Option<T[]>`
 
@@ -392,7 +324,7 @@ pipe(
 
 #### get
 
-> If the index is larger than the list length, returns `None`, otherwise returns the nth element in the list wrapped in `Some`.
+> If `index` is larger than a list length, returns `None`, otherwise returns the nth element in the list wrapped in `Some`.
 
 `get<T>(index: number, list: T[]): Option<T>`
 
@@ -406,7 +338,7 @@ pipe(
 
 #### getBy
 
-> If no element satisfies the predicate function, returns `None`, otherwise returns the first value in the list wrapped in `Some` that satisfies the predicate function.
+> If no element satisfies `predicate`, returns `None`, otherwise returns the first value wrapped in `Some` that satisfies the predicate function.
 
 `getBy<T>(predicate: (value: T, index: number) => boolean, list: T[]): Option<T>`
 
@@ -420,7 +352,7 @@ pipe(
 
 #### take
 
-> If the list has fewer than `n` elements, returns `None`, otherwise returns a list with the first `n` elements from `list`.
+> If `list` has fewer than `n` elements, returns `None`, otherwise returns a new array with the first `n` elements from `list`.
 
 `take<T>(n: number, list: T[]): Option<T[]>`
 
@@ -435,7 +367,7 @@ pipe(
 
 #### drop
 
-> If the list has fewer than `n` elements, returns `None`, otherwise returns a list obtained by dropping the first `n` elements.
+> If `list` has fewer than `n` elements, returns `None`, otherwise returns a list obtained by dropping the first `n` elements.
 
 `drop<T>(n: number, list: T[]): Option<T[]>`
 
@@ -449,7 +381,7 @@ pipe(
 
 #### splitAt
 
-> If the index is larger than the list length, returns `None`, otherwise split the list at position `index`.
+> If `index` is larger than a list length, returns `None`, otherwise split a list at position `index`.
 
 `splitAt<T>(index: number, list: T[]): Option<[T[], T[]]>`
 
@@ -471,7 +403,7 @@ type Result<A, B> = Ok<A> | Error<B>
 
 #### fromNullable
 
-> If the value is `null` or `undefined`, returns the `error` value wrapped in `Error`, otherwise returns `Ok`.
+> If `value` is `null` or `undefined`, returns a value wrapped in `Error`, otherwise returns a value wrapped in `Ok`.
 
 `fromNullable<A, B>(error: B, value: A | null | undefined): Result<A, B>`
 
@@ -482,43 +414,144 @@ fromNullable('error', 'string') // Ok('string')
 
 #### fromFalsy
 
-> TODO
+> If `value` is falsy, returns a value wrapped in `Error`, otherwise returns a value wrapped in `Ok`.
+
+`fromFalsy<A, B>(error: B, value: A | null | undefined): Result<A, B>`
+
+```typescript
+fromFalsy('error', null) // Error('error')
+fromFalsy('error', '') // Error('error')
+fromFalsy('error', 0) // Error('error')
+fromFalsy('error', 'string') // Ok('string')
+fromFalsy('error', 1) // Ok(1)
+```
 
 #### fromPredicate
 
-> TODO
+> If `predicate` returns `false`, returns a value wrapped in `Error`, otherwise returns a value wrapped in `Ok`.
+
+`fromPredicate<A, B>(predicate: (value: A) => boolean, error: B, value: A): Result<A, B> `
+
+```typescript
+fromPredicate(str => str.length > 10, 'error', 'string') // Error('error')
+fromPredicate(obj => obj.prop === 'string', 'error', { prop: 'string' }) // Ok({ props: 'string' })
+```
 
 #### isOk
 
-> TODO
+> If `result` is `Ok`, returns `true`.
+
+`isOk<A, B>(result: Result<A, B>): boolean`
+
+```typescript
+const result = fromNullable('error', 'string') // Ok('string')
+isOk(result) // true
+```
 
 #### isError
 
-> TODO
+> If `result` is `Error`, returns `true`.
+
+`isError<A, B>(result: Result<A, B>): boolean`
+
+```typescript
+const result = fromNullable('error', null) // Error('error')
+isError(result) // true
+```
 
 #### flatMap
 
-> TODO
+> If `result` is `Ok`, returns the result of `fn`, otherwise returns `result` unchanged. Function `fn` must have a return type of `Result`.
+
+`flatMap<A, B, R>(fn: (value: A) => Result<R, B>, result: Result<A, B>): Result<R, B>`
+
+```typescript
+pipe(
+  fromNullable('error', null), // Error('error')
+  flatMap(_ => Ok(1)), // Error('error')
+  getWithDefault(0), // 0
+)
+
+pipe(
+  fromNullable('error', 'string'), // Ok('string')
+  flatMap(_ => Ok(1)), // Ok(1)
+  getWithDefault(0), // 1
+)
+```
 
 #### map
 
-> TODO
+> If `result` is `Ok`,  returns the result of `fn`, otherwise returns `result` unchanged. Function `fn` takes a value of the same type as `value`.
+
+`map<A, B, R>(fn: (value: A) => R, result: Result<A, B>): Result<R, B>`
+
+```typescript
+pipe(
+  fromNullable('error', 1), // Ok(1)
+  map(n => n * 3), // Ok(3)
+  getWithDefault(0), // 3
+)
+
+pipe(
+  fromNullable('error', null), // Error('error')
+  map(n => n * 3), // Error('error')
+  getWithDefault(0), // 0
+)
+```
 
 #### mapWithDefault
 
-> TODO
+> If `result` is `Ok`, returns a result of `fn`, otherwise returns `defaultValue` wrapped in `Ok`.
+
+`mapWithDefault<A, B, R>(defaultValue: R, fn: (value: A) => R, result: Result<A, B>): Result<R, B>`
+
+```typescript
+pipe(
+  fromNullable('error', null), // Error('error')
+  mapWithDefault(0, _ => 1), // Ok(0)
+  getExn, // 0
+)
+```
 
 #### getExn
 
-> TODO
+> If `result` is `Ok`, returns `value` wrapped in `Ok`, otherwise raises an error.
+
+`getExn<A, B>(option: Result<A, B>): A | never`
+
+```typescript
+pipe(
+  fromNullable('error', 'string'), // Ok('string')
+  flatMap(_ => Error('new error')), // Error('new error')
+  getExn, // raises an error
+)
+```
 
 #### getWithDefault
 
-> TODO
+> If `result` is `Ok`, returns `value` wrapped in `Ok`, otherwise returns `defaultValue`.
+
+`getWithDefault<A, B>(defaultValue: A, result: Result<A, B>): A`
+
+```typescript
+pipe(
+  fromNullable('error', null), // Error('error')
+  getWithDefault(1), // 1
+)
+```
 
 #### match
 
-> TODO
+> If `result` is `Ok`, returns a result of `okFn`, otherwise returns a result of `errorFn`.
+
+`match<A, B, R>(okFn: (okValue: A) => R, errorFn: (errorValue: B) => R, result: Result<A, B>): R`
+
+```typescript
+pipe(
+  fromNullable('error', 2), // Ok(2)
+  match(n => n * 10, () => 0), // 20
+)
+```
 
 ## Contributors
 
