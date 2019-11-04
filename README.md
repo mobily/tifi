@@ -521,8 +521,7 @@ pipe(
 
 ```typescript
 pipe(
-  fromNullable('error', 'string'), // Ok('string')
-  flatMap(_ => Error('new error')), // Error('new error')
+  fromNullable('error', null), // Error('error')
   getExn, // raises an error
 )
 ```
