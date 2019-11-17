@@ -3,7 +3,7 @@
 </h1>
 
 <blockquote align="center">
-  🤓 Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. Tifi is inspired by the OCaml/Reason utilities for the option data type.
+  🤓 Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. Tifi is inspired by the OCaml/Reason utilities for various data types.
 </blockquote>
 
 <p align="center">
