@@ -35,16 +35,16 @@
     "url": "https://github.com/mobily/tifi.git"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.19",
-    "all-contributors-cli": "^6.9.3",
-    "coveralls": "^3.0.7",
-    "jest": "^24.9.0",
-    "prettier": "^1.18.2",
-    "ts-jest": "^24.1.0",
-    "tslint": "^5.20.0",
+    "@types/jest": "^25.1.1",
+    "all-contributors-cli": "^6.13.0",
+    "coveralls": "^3.0.9",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.0.0",
+    "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.5"
   },
   "cacheDirectories": [
     "node_modules"
