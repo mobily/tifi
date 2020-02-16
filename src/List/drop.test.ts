@@ -24,5 +24,6 @@ describe('drop', () => {
 
     expect(dropThreeElements([])).toEqual(None)
     expect(dropThreeElements([1, 2, 3])).toEqual(Some([]))
+    expect(dropThreeElements([1, 2, 3, 4])).toEqual(Some([4]))
   })
 })
