@@ -35,12 +35,12 @@
     "url": "https://github.com/mobily/tifi.git"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.1",
+    "@types/jest": "^25.1.2",
     "all-contributors-cli": "^6.13.0",
     "coveralls": "^3.0.9",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
-    "ts-jest": "^25.0.0",
+    "ts-jest": "^25.2.0",
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
