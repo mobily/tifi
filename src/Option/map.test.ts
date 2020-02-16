@@ -24,4 +24,14 @@ describe('map', () => {
       ),
     ).toEqual(Some('string'))
   })
+
+  it('*', () => {
+    const result = map(_ => 'string', fromNullable([1]))
+    expect(result).toEqual(Some('string'))
+  })
+
+  it('*', () => {
+    const result = map(_ => 'string')(fromNullable(null))
+    expect(result).toEqual(None)
+  })
 })

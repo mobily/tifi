@@ -8,7 +8,10 @@ describe('match', () => {
     expect(
       pipe(
         fromNullable(null),
-        match(_ => 'some', () => 'none'),
+        match(
+          _ => 'some',
+          () => 'none',
+        ),
       ),
     ).toEqual('none')
   })
@@ -17,8 +20,41 @@ describe('match', () => {
     expect(
       pipe(
         fromNullable('string'),
-        match(str => str, () => 'none'),
+        match(
+          str => str,
+          () => 'none',
+        ),
       ),
     ).toEqual('string')
+  })
+
+  it('*', () => {
+    const matchWithDefaultSome = match<string, string>(str => `${str}!`)
+
+    expect(
+      pipe(
+        fromNullable('string'),
+        matchWithDefaultSome(() => 'none'),
+      ),
+    ).toEqual('string!')
+  })
+
+  it('*', () => {
+    const matchWithDefaultNone = <T>(fn: (str: T) => string) =>
+      match<T, string>(fn, () => 'error')
+
+    expect(
+      pipe(
+        fromNullable('string'),
+        matchWithDefaultNone(str => `${str}!`),
+      ),
+    ).toEqual('string!')
+
+    expect(
+      pipe(
+        fromNullable(null),
+        matchWithDefaultNone(str => `${str}!`),
+      ),
+    ).toEqual('error')
   })
 })

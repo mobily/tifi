@@ -32,4 +32,14 @@ describe('flatMap', () => {
       ),
     ).toEqual(Some(1))
   })
+
+  it('*', () => {
+    const result = flatMap(_ => Some(1), fromNullable('string'))
+    expect(result).toEqual(Some(1))
+  })
+
+  it('*', () => {
+    const result = flatMap(_ => Some(1))(fromNullable(null))
+    expect(result).toEqual(None)
+  })
 })
