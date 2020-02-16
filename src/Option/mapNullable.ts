@@ -1,15 +1,15 @@
 import { fromNullable } from './fromNullable'
 
 import { Option, MapFn } from '../internal/types'
+import { curry2 } from '../internal/curry2'
 
-export function mapNullable<T, R>(
-  fn: MapFn<T, R>,
-): (option: Option<T>) => Option<R>
-
-export function mapNullable<T, R>(fn: MapFn<T, R>, option: Option<T>): Option<R>
-
-export function mapNullable<T, R>(fn: MapFn<T, R>, option?: Option<T>): any {
-  return typeof option === 'undefined'
-    ? (opt: Option<T>) => mapNullable(fn, opt)
-    : fromNullable(fn(option.value))
+type MapNullable = {
+  <T, R>(fn: MapFn<T, R>): (option: Option<T>) => Option<R>
+  <T, R>(fn: MapFn<T, R>, option: Option<T>): Option<R>
 }
+
+export const mapNullable: MapNullable = curry2(
+  <T, R>(fn: MapFn<T, R>, option: Option<T>): any => {
+    return fromNullable(fn(option.value))
+  },
+)

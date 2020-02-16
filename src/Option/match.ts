@@ -1,27 +1,18 @@
 import { isNone } from './isNone'
-
 import { Option } from '../internal/types'
+import { curry3 } from '../internal/curry3'
 
-export function match<T, R>(
-  someFn: (value: T) => R,
-  noneFn: () => R,
-): (option: Option<T>) => R
+type SomeFn<T, R> = (value: T) => R
+type NoneFn<R> = () => R
 
-export function match<T, R>(
-  someFn: (value: T) => R,
-  noneFn: () => R,
-  option: Option<T>,
-): R
-
-// TODO: Curry3
-export function match<T, R>(
-  someFn: (value: T) => R,
-  noneFn: () => R,
-  option?: Option<T>,
-): any {
-  if (typeof option === 'undefined') {
-    return (opt: Option<T>) => match(someFn, noneFn, opt)
-  }
-
-  return isNone(option) ? noneFn() : someFn(option.value)
+type Match = {
+  <T, R>(someFn: SomeFn<T, R>): (noneFn: NoneFn<R>) => (option: Option<T>) => R
+  <T, R>(someFn: SomeFn<T, R>, noneFn: NoneFn<R>): (option: Option<T>) => R
+  <T, R>(someFn: SomeFn<T, R>, noneFn: NoneFn<R>, option: Option<T>): R
 }
+
+export const match: Match = curry3(
+  <T, R>(someFn: (value: T) => R, noneFn: () => R, option: Option<T>): any => {
+    return isNone(option) ? noneFn() : someFn(option.value)
+  },
+)
