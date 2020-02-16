@@ -39,21 +39,6 @@ or with `npm`
 npm install @mobily/tifi --save
 ```
 
-## Example
-
-> TODO
-
-<details>
-<summary>Example</summary>
-
-```typescript
-
-// TODO
-
-```
-
-</details>
-
 ## Api Reference
 
   - [Option](#option)
