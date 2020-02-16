@@ -78,9 +78,6 @@ export function pipe<T, A, B, C, D, E, F, G, H, R>(
   result: UnaryFunction<H, R>,
 ): R
 
-export function pipe<T, R>(
-  source: T,
-  ...fns: Array<UnaryFunction<any, any>>
-): R {
+export function pipe<T, R>(source: T, ...fns: any[]): R {
   return fns.reduce((prev, fn) => fn(prev), source as any)
 }

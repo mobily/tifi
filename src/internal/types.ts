@@ -1,12 +1,12 @@
-interface Fn<T> {
+interface Opaque<T> {
   value: NonNullable<T>
   __type: symbol
 }
 
-export type Some<T> = Fn<T> & { _: 'Some' }
-export type None = Fn<any> & { _: 'None' }
-export type Ok<T> = Fn<T> & { _: 'Ok' }
-export type Error<T> = Fn<T> & { _: 'Error' }
+export type Some<T> = Opaque<T> & { _: 'Some' }
+export type None = Opaque<any> & { _: 'None' }
+export type Ok<T> = Opaque<T> & { _: 'Ok' }
+export type Error<T> = Opaque<T> & { _: 'Error' }
 
 export type Option<T> = None | Some<T>
 export type Result<A, B> = Ok<A> | Error<B>
