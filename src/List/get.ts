@@ -2,12 +2,13 @@ import { fromNullable } from '../Option/fromNullable'
 
 import { Option } from '../internal/types'
 
-export function get<T>(index: number): (list: T[]) => Option<T>
+import { curry2 } from '../internal/curry2'
 
-export function get<T>(index: number, list: T[]): Option<T>
-
-export function get<T>(index: number, list?: T[]): any {
-  return typeof list === 'undefined'
-    ? (arr: T[]) => get(index, arr)
-    : fromNullable(list[index])
+type Get = {
+  (index: number): <T>(list: T[]) => Option<T>
+  <T>(index: number, list: T[]): Option<T>
 }
+
+export const get: Get = curry2(<T>(index: number, list: T[]): any => {
+  return fromNullable(list[index])
+})
