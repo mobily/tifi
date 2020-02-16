@@ -23,4 +23,25 @@ describe('mapWithDefault', () => {
       ),
     ).toEqual(Ok('string'))
   })
+
+  it('*', () => {
+    const fromNullableWithError = fromNullable('error')
+    const mapWithDefaultString = mapWithDefault('default')
+
+    expect(
+      pipe(
+        fromNullableWithError([1, 2, 3]),
+        mapWithDefaultString(_ => 'string'),
+      ),
+    ).toEqual(Ok('string'))
+  })
+
+  it('*', () => {
+    const fromNullableWithError = fromNullable('error')
+    const mapWithDefaultString = mapWithDefault('default')(_ => 'string')
+
+    expect(pipe(fromNullableWithError(null), mapWithDefaultString)).toEqual(
+      Ok('default'),
+    )
+  })
 })

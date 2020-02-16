@@ -17,4 +17,12 @@ describe('fromFalsy', () => {
     expect(fromFalsy('2', [])).toEqual(Ok([]))
     expect(fromFalsy('3', {})).toEqual(Ok({}))
   })
+
+  it('*', () => {
+    const fromFalsyWithError = fromFalsy('error')
+
+    expect(fromFalsyWithError(0)).toEqual(Error('error'))
+    expect(fromFalsyWithError(false)).toEqual(Error('error'))
+    expect(fromFalsyWithError('string')).toEqual(Ok('string'))
+  })
 })

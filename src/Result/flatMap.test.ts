@@ -32,4 +32,13 @@ describe('flatMap', () => {
       ),
     ).toEqual(Ok(1))
   })
+
+  it('*', () => {
+    const fromNullableWithError = fromNullable('error')
+    const okResult = flatMap(_ => Ok(1), fromNullableWithError('string'))
+    const errorResult = flatMap(_ => Ok(1), fromNullableWithError(null))
+
+    expect(okResult).toEqual(Ok(1))
+    expect(errorResult).toEqual(Error('error'))
+  })
 })

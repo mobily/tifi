@@ -16,4 +16,11 @@ describe('fromNullable', () => {
     expect(fromNullable('4', 0)).toEqual(Ok(0))
     expect(fromNullable('5', false)).toEqual(Ok(false))
   })
+
+  it('*', () => {
+    const fromNullableWithError = fromNullable('error')
+
+    expect(fromNullableWithError(null)).toEqual(Error('error'))
+    expect(fromNullableWithError('string')).toEqual(Ok('string'))
+  })
 })

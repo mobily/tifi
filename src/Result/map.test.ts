@@ -24,4 +24,14 @@ describe('map', () => {
       ),
     ).toEqual(Ok('string'))
   })
+
+  it('*', () => {
+    const fromNullableWithError = fromNullable('error')
+    const mapNumberToString = map<number, number>(n => n * 2)
+
+    expect(pipe(fromNullableWithError(1), mapNumberToString)).toEqual(Ok(2))
+    expect(pipe(fromNullableWithError(undefined), mapNumberToString)).toEqual(
+      Error('error'),
+    )
+  })
 })
