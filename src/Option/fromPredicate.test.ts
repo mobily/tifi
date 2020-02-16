@@ -18,4 +18,11 @@ describe('fromPredicate', () => {
       Some({ prop: null }),
     )
   })
+
+  it('*', () => {
+    const takeEvenNumber = fromPredicate<number>(x => x % 2 === 0)
+
+    expect(takeEvenNumber(4)).toEqual(Some(4))
+    expect(takeEvenNumber(1)).toEqual(None)
+  })
 })
