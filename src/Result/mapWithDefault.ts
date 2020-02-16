@@ -2,27 +2,23 @@ import { Ok } from './Ok'
 import { isError } from './isError'
 
 import { Result, MapFn } from '../internal/types'
+import { curry3 } from '../internal/curry3'
 
-export function mapWithDefault<A, B, R extends NonNullable<{}>>(
-  defaultValue: R,
-  fn: MapFn<A, R>,
-): (result: Result<A, B>) => Result<R, B>
-
-export function mapWithDefault<A, B, R extends NonNullable<{}>>(
-  defaultValue: R,
-  fn: MapFn<A, R>,
-  result: Result<A, B>,
-): Result<R, B>
-
-// TODO: Curry3
-export function mapWithDefault<A, B, R extends NonNullable<{}>>(
-  defaultValue: R,
-  fn: MapFn<A, R>,
-  result?: Result<A, B>,
-): any {
-  if (typeof result === 'undefined') {
-    return (res: Result<A, B>) => mapWithDefault(defaultValue, fn, res)
-  }
-
-  return Ok(isError(result) ? defaultValue : fn(result.value))
+type MapWithDefault = {
+  <R>(defaultValue: R): <A>(
+    fn: MapFn<A, R>,
+  ) => <B>(result: Result<A, B>) => Result<R, B>
+  <A, R>(defaultValue: R, fn: MapFn<A, R>): <B>(
+    result: Result<A, B>,
+  ) => Result<R, B>
+  <A, B, R>(defaultValue: R, fn: MapFn<A, R>, result: Result<A, B>): Result<
+    R,
+    B
+  >
 }
+
+export const mapWithDefault: MapWithDefault = curry3(
+  <A, B, R>(defaultValue: R, fn: MapFn<A, R>, result: Result<A, B>): any => {
+    return Ok(isError(result) ? defaultValue : fn(result.value))
+  },
+)

@@ -1,23 +1,14 @@
 import { isError } from './isError'
-
 import { Result } from '../internal/types'
+import { curry2 } from '../internal/curry2'
 
-export function getWithDefault<A extends NonNullable<{}>, B>(
-  defaultValue: A,
-): (result: Result<A, B>) => A
-
-export function getWithDefault<A extends NonNullable<{}>, B>(
-  defaultValue: A,
-  result: Result<A, B>,
-): A
-
-export function getWithDefault<A extends NonNullable<{}>, B>(
-  defaultValue: A,
-  result?: Result<A, B>,
-): any {
-  if (typeof result === 'undefined') {
-    return (res: Result<A, B>) => getWithDefault(defaultValue, res)
-  }
-
-  return isError(result) ? defaultValue : result.value
+type GetWithDefault = {
+  <A>(defaultValue: A): <B>(result: Result<A, B>) => A
+  <A, B>(defaultValue: A, result: Result<A, B>): A
 }
+
+export const getWithDefault: GetWithDefault = curry2(
+  <A, B>(defaultValue: A, result: Result<A, B>): any => {
+    return isError(result) ? defaultValue : result.value
+  },
+)
