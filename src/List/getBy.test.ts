@@ -29,4 +29,11 @@ describe('getBy', () => {
       ]),
     ).toEqual(Some({ prop: 'abc' }))
   })
+
+  it('*', () => {
+    const equalsTwo = getBy(value => value === 2)
+
+    expect(equalsTwo([])).toEqual(None)
+    expect(equalsTwo([1, 2, 3])).toEqual(Some(2))
+  })
 })

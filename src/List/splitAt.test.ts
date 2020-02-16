@@ -18,7 +18,18 @@ describe('splitAt', () => {
       Some([[true, true], [false]]),
     )
     expect(splitAt(2, [[1], [2], [3], [4]])).toEqual(
-      Some([[[1], [2]], [[3], [4]]]),
+      Some([
+        [[1], [2]],
+        [[3], [4]],
+      ]),
     )
+  })
+
+  it('*', () => {
+    const splitAtFirstElement = splitAt(1)
+
+    expect(splitAtFirstElement([])).toEqual(None)
+    expect(splitAtFirstElement([1])).toEqual(Some([[1], []]))
+    expect(splitAtFirstElement([1, 2])).toEqual(Some([[1], [2]]))
   })
 })

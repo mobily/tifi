@@ -18,4 +18,11 @@ describe('drop', () => {
     expect(drop(2, [true, true, false])).toEqual(Some([false]))
     expect(drop(3, [1, 2, 3])).toEqual(Some([]))
   })
+
+  it('*', () => {
+    const dropThreeElements = drop(3)
+
+    expect(dropThreeElements([])).toEqual(None)
+    expect(dropThreeElements([1, 2, 3])).toEqual(Some([]))
+  })
 })

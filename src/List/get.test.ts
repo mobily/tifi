@@ -15,4 +15,11 @@ describe('get', () => {
     expect(get(2, [true, true, false])).toEqual(Some(false))
     expect(get(1, [[1], [2]])).toEqual(Some([2]))
   })
+
+  it('*', () => {
+    const getThirdElement = get(2)
+
+    expect(getThirdElement([])).toEqual(None)
+    expect(getThirdElement([true, true, false])).toEqual(Some(false))
+  })
 })

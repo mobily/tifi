@@ -18,4 +18,11 @@ describe('take', () => {
     expect(take(2, [true, true, false])).toEqual(Some([true, true]))
     expect(take(3, [1, 2, 3])).toEqual(Some([1, 2, 3]))
   })
+
+  it('*', () => {
+    const takeThreeElements = take(3)
+
+    expect(takeThreeElements([1, 2, 3, 4])).toEqual(Some([1, 2, 3]))
+    expect(takeThreeElements([1, 2])).toEqual(None)
+  })
 })
