@@ -132,6 +132,11 @@ fromFalsy(1) // Some(1)
 ```typescript
 fromPredicate(str => str.length > 10, 'string') // None
 fromPredicate(obj => obj.prop === 'string', { prop: 'string' }) // Some({ props: 'string' })
+
+const takeEvenNumber = fromPredicate<number>(x => x % 2 === 0)
+
+takeEvenNumber(4) // Some(4)
+takeEvenNumber(1) // None
 ```
 
 #### isSome
@@ -222,6 +227,14 @@ pipe(
   mapWithDefault(0, _ => 1), // Some(0)
   getExn, // 0
 )
+
+const mapWithDefaultZero = mapWithDefault(0)
+
+pipe(
+  fromNullable(null), // None
+  mapWithDefaultZero(_ => 1), // Some(0)
+  getExn, // 0
+)
 ```
 
 #### getExn
@@ -261,6 +274,21 @@ pipe(
 pipe(
   fromNullable(2), // Some(2)
   match(n => n * 10, () => 0), // 20
+)
+
+const multiplyByTenIfSome = match<number, number>(n => n * 2)
+
+pipe(
+  fromNullable(2), // Some(2)
+  multiplyByTenIfSome(() => 0), // 20
+)
+
+const returnZeroIfNone = <T>(fn: (str: T) => number) =>
+  match<T, number>(fn, () => 0)
+
+pipe(
+  fromNullable(null), // None
+  returnZeroIfNone(n => n * 10), // 0
 )
 ```
 
@@ -334,6 +362,14 @@ pipe(
   map(value => value * 2), // Some(4)
   getExn, // 4
 )
+
+const getThirdElement = get(2)
+
+pipe(
+  getThirdElement([1, 3, 6]), // Some(6)
+  map(value => value * 2), // Some(12)
+  getExn, // 12
+)
 ```
 
 #### getBy
@@ -345,8 +381,22 @@ pipe(
 ```typescript
 pipe(
   getBy(str => str.length === 2, ['a', 'ab', 'bc']), // Some('ab')
-  map(str => `${str}cde`), // Some('abcde'),
+  map(str => `${str}cde`), // Some('abcde')
   getWithDefault('xyz'), // abcde
+)
+
+const equalsTwo = getBy(value => value === 2)
+
+pipe(
+  equalsTwo([0, 2, 4]), // Some(2)
+  map(n => n * 10), // Some(20)
+  getWithDefault(0), // 20
+)
+
+pipe(
+  equalsTwo([0, 4, 8]), // None
+  map(n => n * 10), // None
+  getWithDefault(0), // 0
 )
 ```
 
@@ -363,6 +413,18 @@ pipe(
   // or flatMap(getBy(value => value % 2 === 0)), all functions are curried
   getWithDefault(0), // 2
 )
+
+const takeThreeElements = take(3)
+
+pipe(
+  takeThreeElements([0, 2, 4, 6]), // Some([0, 2, 4])
+  getWithDefault([]), // [0, 2, 4]
+)
+
+pipe(
+  takeThreeElements([0, 2]), // None
+  getWithDefault([]), // []
+)
 ```
 
 #### drop
@@ -376,6 +438,21 @@ pipe(
   drop(1, [1, 2, 3]), // Some([2, 3])
   flatMap(head), // Some(2)
   getWithDefault(0), // 2
+)
+
+const dropThreeElements = drop(3)
+
+pipe(
+  dropThreeElements([]), // None
+  flatMap(head), // None
+  getWithDefault(0), // 0
+)
+
+pipe(
+  dropThreeElements([1, 2, 3, 4, 5, 6]), // Some([4, 5, 6])
+  flatMap(tail), // Some([5, 6])
+  flatMap(head), // Some(5)
+  getWithDefault(0), // 5
 )
 ```
 
@@ -410,6 +487,11 @@ type Result<A, B> = Ok<A> | Error<B>
 ```typescript
 fromNullable('error', null) // Error('error')
 fromNullable('error', 'string') // Ok('string')
+
+const fromNullableWithError = fromNullable('error')
+
+fromNullableWithError(null) // Error('error')
+fromNullableWithError('string') // Ok('string')
 ```
 
 #### fromFalsy
@@ -424,6 +506,11 @@ fromFalsy('error', '') // Error('error')
 fromFalsy('error', 0) // Error('error')
 fromFalsy('error', 'string') // Ok('string')
 fromFalsy('error', 1) // Ok(1)
+
+const fromFalsyWithError = fromFalsy('error')
+
+fromFalsyWithError(0) // Error('error')
+fromFalsyWithError(1) // Ok(1)
 ```
 
 #### fromPredicate
@@ -435,6 +522,14 @@ fromFalsy('error', 1) // Ok(1)
 ```typescript
 fromPredicate(str => str.length > 10, 'error', 'string') // Error('error')
 fromPredicate(obj => obj.prop === 'string', 'error', { prop: 'string' }) // Ok({ props: 'string' })
+
+const takeEvenNumber = fromPredicate<number, string>(
+  x => x % 2 === 0,
+  'error',
+)
+
+takeEvenNumber(4) // Ok(4)
+takeEvenNumber(1) // Error('error')
 ```
 
 #### isOk
@@ -511,6 +606,21 @@ pipe(
   mapWithDefault(0, _ => 1), // Ok(0)
   getExn, // 0
 )
+
+const fromNullableWithError = fromNullable('error')
+const mapWithDefaultZero = mapWithDefault(0)
+
+pipe(
+  fromNullableWithError(null), // Error('error')
+  mapWithDefaultZero(_ => 1), // Ok(0)
+  getExn, // 0
+)
+
+pipe(
+  fromNullableWithError(1), // Ok(1)
+  mapWithDefaultZero(n => n * 10), // Ok(10)
+  getExn, // 10
+)
 ```
 
 #### getExn
@@ -549,6 +659,21 @@ pipe(
 pipe(
   fromNullable('error', 2), // Ok(2)
   match(n => n * 10, () => 0), // 20
+)
+
+const fromNullableWithError = fromNullable('error')
+const matchWithDefaultOk = match<string, string>(str => `${str}!`)
+const matchWithDefaultError = <T>(fn: (str: T) => string) =>
+  match<T, string, string>(fn, str => `${str} x2`)
+
+pipe(
+  fromNullableWithError('string'), // Ok('string')
+  matchWithDefaultError(str => `${str}!`), // string!
+)
+
+ pipe(
+  fromNullableWithError(null), // Error('error')
+  matchWithDefaultError(str => `${str}!`), // error x2
 )
 ```
 
