@@ -1,7 +1,7 @@
 {
   "name": "@mobily/tifi",
   "description": "🤓 Tifi solves a problem of the existence of both `undefined` and `null`. It's inspired by the OCaml/Reason utilities for various data types.",
-  "version": "0.5.0",
+  "version": "0.9.0",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc --outDir ./dist",
