@@ -17,10 +17,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
-    "noEmit": false,
     "outDir": "dist",
     "rootDir": "src",
     "baseUrl": "src"
   },
-  "exclude": ["**/*.test.ts", "playground"]
+  "exclude": ["**/*.test.ts", "playground"],
+  "include": [
+    "./src/**/*"
+  ]
 }
