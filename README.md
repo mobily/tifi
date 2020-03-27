@@ -2,9 +2,9 @@
   Tifi (abbreviation for There, I fixed it!)
 </h1>
 
-<blockquote align="center">
+<h4 align="center">
   🤓 Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. Tifi is inspired by the OCaml/Reason utilities for various data types.
-</blockquote>
+</h4>
 
 <p align="center">
   <a href="https://travis-ci.com/mobily/tifi">
