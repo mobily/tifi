@@ -7,6 +7,7 @@
     "build": "tsc --outDir ./dist",
     "test": "jest",
     "test:watch": "jest --watch",
+    "generate:toc": "node ./scripts/generate-toc.js",
     "generate:contributors": "yarn all-contributors generate",
     "generate:package": "bash ./scripts/package.sh"
   },
@@ -39,7 +40,9 @@
     "all-contributors-cli": "^6.13.0",
     "coveralls": "^3.0.9",
     "jest": "^25.1.0",
+    "markdown-contents": "^1.0.11",
     "prettier": "^1.19.1",
+    "ramda": "^0.27.0",
     "ts-jest": "^25.2.0",
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
