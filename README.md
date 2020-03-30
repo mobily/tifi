@@ -9,6 +9,7 @@ Tifi is an abbreviation for _There, I fixed it!_
 - [lightweight](https://bundlephobia.com/result?p=@mobily/tifi), no dependencies, less than 1kb
 - type safety, full TypeScript support
 - get rid of `undefined` and `null` values in your project in a convenient, functional way
+- all functions are [curried](https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983)
 
 ## Getting started
 
