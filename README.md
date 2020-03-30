@@ -4,6 +4,12 @@ Tifi is an abbreviation for _There, I fixed it!_
 
 > Tifi is a library for functional programming in TypeScript. It solves a problem of the existence of both <code>undefined</code> and <code>null</code>. Tifi is inspired by the OCaml/Reason utilities for various data types.
 
+## Features
+
+- [lightweight](https://bundlephobia.com/result?p=@mobily/tifi), no dependencies, less than 1kb
+- type safety, full TypeScript support
+- get rid of `undefined` and `null` values in your project in a convenient, functional way
+
 ## Getting started
 
 ### Installation
