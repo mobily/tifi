@@ -1,4 +1,4 @@
- # 🤓 Tifi &middot; [![Build Status](https://img.shields.io/travis/com/mobily/tifi.svg?style=flat-square)](https://travis-ci.com/mobily/tifi) [![npm](https://img.shields.io/npm/v/@mobily/tifi.svg?style=flat-square)](https://www.npmjs.com/package/@mobily/tifi)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/tifi/blob/master/LICENSE)
+ # 🤓 Tifi &middot; [![Build Status](https://img.shields.io/travis/com/mobily/tifi.svg?style=flat-square)](https://travis-ci.com/mobily/tifi) [![Coverage](https://img.shields.io/coveralls/github/mobily/tifi.svg?style=flat-square)](https://coveralls.io/github/mobily/tifi?branch=master) [![npm](https://img.shields.io/npm/v/@mobily/tifi.svg?style=flat-square)](https://www.npmjs.com/package/@mobily/tifi) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/tifi/blob/master/LICENSE)
 
 Tifi is an abbreviation for _There, I fixed it!_
 
@@ -8,6 +8,7 @@ Tifi is an abbreviation for _There, I fixed it!_
 
 - [lightweight](https://bundlephobia.com/result?p=@mobily/tifi), no dependencies, less than 1kb
 - type safety, full TypeScript support
+- 100% test coverage
 - get rid of `undefined` and `null` values in your project in a convenient, functional way
 - all functions are [curried](https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983)
 
